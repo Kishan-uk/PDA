@@ -10,13 +10,13 @@ describe('calculator functionality', function() {
   });
 
   // write integration tests here in the form of "it should do something..."
-  it('should have working number buttons', function(){
+  it('should have working number buttons', function() {
     running_total = element(by.css('#running_total'))
     element(by.css('#number2')).click();
     expect(running_total.getAttribute('value')).to.eventually.equal('2')
-  })
+  });
 
-  it('should have working number buttons to update the display of the running total', function () {
+  it('should have working number buttons to update the display of the running total', function() {
     running_total = element(by.css('#running_total'));
     element(by.css('#number1')).click();
     element(by.css('#number2')).click();
@@ -26,7 +26,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('12345');
   });
 
-  it('should have working buttons to add', function(){
+  it('should have working buttons to add', function() {
     running_total = element(by.css('#running_total'));
     element(by.css('#number3')).click();
     element(by.css('#operator_add')).click();
@@ -35,7 +35,7 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('13');
   });
 
-  it('should have working buttons to subtract', function(){
+  it('should have working buttons to subtract', function() {
     running_total = element(by.css('#running_total'));
     element(by.css('#number9')).click();
     element(by.css('#operator_subtract')).click();
@@ -51,7 +51,16 @@ describe('calculator functionality', function() {
     element(by.css('#number3')).click();
     element(by.css('#operator_equals')).click();
     expect(running_total.getAttribute('value')).to.eventually.equal('2');
-  })
+  });
+
+  it('should be able to work with a decimal result', function() {
+    running_total = element(by.css('#running_total'));
+    element(by.css('#number4')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number8')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0.5');
+  });
 
   it('should be able to work with large numbers', function() {
     running_total = element(by.css('#running_total'));
@@ -63,7 +72,7 @@ describe('calculator functionality', function() {
     element(by.css('#number7')).click();
     element(by.css('#operator_equals')).click();
     expect(running_total.getAttribute('value')).to.eventually.equal('587');
-  })
+  });
 
   it('should be able to divide by zero', function() {
     running_total = element(by.css('#running_total'));
@@ -72,7 +81,7 @@ describe('calculator functionality', function() {
     element(by.css('#number0')).click();
     element(by.css('#operator_equals')).click();
     expect(running_total.getAttribute('value')).to.eventually.equal('error');
-  })
+  });
 
 
 });
